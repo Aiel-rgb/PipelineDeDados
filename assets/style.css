@@ -1,0 +1,14 @@
+[data-testid="stMetric"] {
+    background-color: #E8F4FD;
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid #1A6EBD;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #1A3A5C;
+}
+
+[data-testid="stSidebar"] * {
+    color: #FFFFFF !important;
+}
