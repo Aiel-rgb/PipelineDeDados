@@ -59,6 +59,22 @@ pipeline_dados/
 
 ---
 
+## 📸 Screenshots
+
+### Home / Visão Geral
+![Dashboard Streamlit - Home](assets/img/home.png)
+
+### Dados e Resultados
+![Base de Dados](assets/img/dados.png)
+
+### Detecção de Anomalias
+![Anomalias Detectadas](assets/img/anomalias.png)
+
+### Análise Executiva com IA
+![Análise da IA](assets/img/IA.png)
+
+---
+
 ## ⚙️ Instalação
 
 **1. Clone o repositório:**
@@ -105,6 +121,7 @@ streamlit run app.py
 ---
 
 ## 🔎 Anomalias Detectadas
+
 
 O pipeline identifica automaticamente as seguintes inconsistências:
 
