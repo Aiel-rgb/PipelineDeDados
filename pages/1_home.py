@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 from modules import ingestao, limpeza, anomalias
 from pathlib import Path
 
@@ -41,7 +42,26 @@ col1, col2 = st.columns([1.5,1])
 
 with col1:
     st.subheader("Anomalias por tipo")
-    st.bar_chart(alertas_atual["tipo_anomalia"].value_counts(), color="#1A6EBD")
+    contagem = alertas_atual["tipo_anomalia"].value_counts().reset_index()
+    contagem.columns = ["Tipo", "Quantidade"]
+
+    fig = px.bar(
+        contagem,
+        x="Tipo",
+        y="Quantidade",
+        color="Tipo",
+        color_discrete_sequence=px.colors.sequential.Blues_r,
+        text="Quantidade"
+    )
+    fig.update_layout(
+        showlegend=False,
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        font=dict(color="#1A1A2E"),
+        hoverlabel=dict(bgcolor="#1A6EBD", font_color="white")
+    )
+    fig.update_traces(textposition="outside")
+    st.plotly_chart(fig, use_container_width=True)
 
 with col2:
     st.subheader("Métricas")
