@@ -1,9 +1,12 @@
 import streamlit as st 
 from modules import ingestao, limpeza, anomalias
 from pathlib import Path
+from modules.utils import carregar_css
 
 BASE = Path(__file__).parent.parent
 RAW = BASE / "Arquivos"
+
+carregar_css(BASE / "assets/style.css")
 
 df_lanc = ingestao.ler_lancamentos(RAW / "lancamentos_contabeis.xlsx")
 df_conf = ingestao.ler_conformidade(RAW / "relatorio_conformidade.xlsx")

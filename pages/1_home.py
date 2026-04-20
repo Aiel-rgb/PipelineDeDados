@@ -3,13 +3,10 @@ import pandas as pd
 import plotly.express as px
 from modules import ingestao, limpeza, anomalias
 from pathlib import Path
+from modules.utils import carregar_css
 
 BASE = Path(__file__).parent.parent 
 RAW = BASE / "Arquivos"
-
-def carregar_css(caminho):
-    with open(caminho) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 carregar_css(BASE / "assets/style.css")
 

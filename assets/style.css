@@ -12,3 +12,36 @@
 [data-testid="stSidebar"] * {
     color: #FFFFFF !important;
 }
+.stApp {
+    background: linear-gradient(160deg, #F0F2F6 0%, #E8EDF5 40%, #DDE4F0 100%);
+}
+
+[data-testid="stSidebar"] {
+    min-width: 180px !important;
+    max-width: 180px !important;
+}
+
+
+[data-testid="stSidebarNavLink"] {
+    font-size: 16px !important;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.4s ease-in-out;
+}
+
+[data-testid="stSidebarNavLink"]:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    transform: translateX(5px);
+    color: #FFFFFF !important;
+}
+
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-15px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+.main .block-container {
+    animation: fadeIn 0.4s ease-in-out;
+}

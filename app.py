@@ -14,4 +14,6 @@ paginas = {
 }
 
 nav = st.navigation(list(paginas.values()))
-nav.run()
+
+with st.spinner("Carregando..."):
+    nav.run()
