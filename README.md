@@ -62,16 +62,16 @@ pipeline_dados/
 ## 📸 Screenshots
 
 ### Home / Visão Geral
-![Dashboard Interativo](assets/img/home.png)
+![Dashboard Interativo](assets/img/home.png?v=1)
 
 ### Dados e Resultados
-![Resultado dos Dados](assets/img/dados.png)
+![Resultado dos Dados](assets/img/dados.png?v=1)
 
 ### Detecção de Anomalias
-![Detecção de Anomalias](assets/img/anomalias.png)
+![Detecção de Anomalias](assets/img/anomalias.png?v=1)
 
 ### Análise Executiva com IA
-![ARIA IA](assets/img/IA.png)
+![ARIA IA](assets/img/IA.png?v=1)
 
 ---
 
