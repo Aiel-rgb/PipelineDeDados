@@ -26,8 +26,6 @@ alertas_erp  = anomalias.detectar_anomalias_erp(df_erp)
 SAIDA.parent.mkdir(parents=True, exist_ok=True)
 relatorio.gerar_relatorio(alertas_lanc, alertas_conf, alertas_erp, SAIDA)
 
-st.title("ARIA")
-
 st.markdown("""
 <style>
 @keyframes fadeIn {
@@ -50,6 +48,13 @@ st.markdown("""
     font-size: 18px;
 }
 </style>
+
+<h1 style='font-size: 2.5rem; font-weight: 700; color: #1A6EBD; letter-spacing: 2px;'>
+    🤖 ARIA
+    <span style='font-size: 1rem; font-weight: 400; color: #666; letter-spacing: 0px;'>
+     — Auditoria e Risco com Inteligência Artificial
+    </span>
+</h1>
 
 <div class="aria-welcome">
     <strong>Olá, seja bem-vindo. Sou a ARIA</strong> — Auditoria e Risco com Inteligência Artificial.<br><br>

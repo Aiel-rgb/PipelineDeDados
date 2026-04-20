@@ -22,16 +22,38 @@ alertas_erp = anomalias.detectar_anomalias_erp(df_erp)
 
 st.title("Anomalias Detectadas")
 
+def colorir_anomalia(row):
+    cores = {
+        "DUPLICATA": "background-color: #FFE5E5",
+        "VALOR_NEGATIVO": "background-color: #FFF3E0",
+        "VALOR_ATÍPICO": "background-color: #FFF3E0",
+        "SEM_APROVADOR": "background-color: #FFF9E0",
+        "NÃO_CONFORME": "background-color: #FFE5E5",
+        "SEM_DADOS": "background-color: #FFF9E0",
+        "CNPJ_INVALIDO": "background-color: #FFE5E5",
+    }
+    cor = cores.get(row["tipo_anomalia"], "")
+    return [cor] * len(row)
+
 aba1, aba2, aba3 = st.tabs(["Lançamentos", "Conformidade", "ERP"])
 
 with aba1:
     st.metric("Total de alertas", len(alertas_lanc))
-    st.dataframe(alertas_lanc, use_container_width=True)
+    st.dataframe(
+    alertas_lanc.style.apply(colorir_anomalia, axis=1),
+    use_container_width=True
+)
 
 with aba2:
     st.metric("Total de alertas", len(alertas_conf))
-    st.dataframe(alertas_conf, use_container_width=True)
+    st.dataframe(
+    alertas_conf.style.apply(colorir_anomalia, axis=1),
+    use_container_width=True
+)
 
 with aba3:
     st.metric("Total de alertas", len(alertas_erp))
-    st.dataframe(alertas_erp, use_container_width=True)
+    st.dataframe(
+    alertas_erp.style.apply(colorir_anomalia, axis=1),
+    use_container_width=True
+)

@@ -52,8 +52,8 @@ with col1:
     )
     fig.update_layout(
         showlegend=False,
-        plot_bgcolor="white",
-        paper_bgcolor="white",
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
         font=dict(color="#1A1A2E"),
         hoverlabel=dict(bgcolor="#1A6EBD", font_color="white")
     )

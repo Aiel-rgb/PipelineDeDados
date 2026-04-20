@@ -25,8 +25,10 @@ st.title("📊 Dados")
 aba1, aba2, aba3 = st.tabs(["Lançamentos", "Conformidade", "ERP"])
 
 with aba1:
+    df_lanc["Data"] = df_lanc["Data"].dt.strftime("%d/%m/%Y")
     st.metric("Total de registros", len(df_lanc))
     st.dataframe(df_lanc, use_container_width=True)
+
 
 with aba2:
     st.metric("Total de registros", len(df_conf))
