@@ -22,7 +22,11 @@ alertas_lanc = anomalias.detectar_anomalias_lancamentos(df_lanc)
 alertas_conf = anomalias.detectar_anomalias_conformidade(df_conf)
 alertas_erp = anomalias.detectar_anomalias_erp(df_erp)
 
-st.title("🔍 Auditoria Interna")
+st.markdown("""
+<h1>
+    <i class="fa-solid fa-magnifying-glass" style="color:#1A6EBD"></i> ARGOS
+</h1>
+""", unsafe_allow_html=True)
 fonte = st.selectbox("Selecione a fonte:", ["Lançamentos", "Conformidade", "ERP"])
 
 if fonte == "Lançamentos":
@@ -70,16 +74,53 @@ st.divider()
 col3, col4 = st.columns([1.5,1])
 
 with col3:
-    st.markdown("**Sobre o pipeline**")
-    st.markdown("Pipeline de auditoria interna que detecta automaticamente inconsistências em lançamentos contábeis, relatórios de conformidade e exportações de ERP.")
+    st.subheader("Distribuição de anomalias")
+    fig_pizza = px.pie(
+        contagem,
+        values="Quantidade",
+        names="Tipo",
+        color_discrete_sequence=px.colors.sequential.Blues_r,
+        hole=0.4
+    )
+    fig_pizza.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#1A1A2E"),
+        showlegend=True
+    )
+    st.plotly_chart(fig_pizza, use_container_width=True)
 
 with col4:
-    st.selectbox("Visualizar tabela:", ["Dados brutos", "Apenas anomalias"], key="tabela")
-    if st.session_state.tabela == "Dados brutos":
-        st.dataframe(df_atual.head(5), use_container_width=True)
+    st.subheader("Valores por lançamento")
+    if fonte == "Lançamentos":
+        fig_linha = px.line(
+            df_atual,
+            x="Data",
+            y="Valor_BRL",
+            markers=True,
+            color_discrete_sequence=["#1A6EBD"]
+        )
+    elif fonte == "ERP":
+        fig_linha = px.line(
+            df_atual,
+            x="EMISSAO",
+            y="VALOR_TOTAL",
+            markers=True,
+            color_discrete_sequence=["#1A6EBD"]
+        )
     else:
-        st.dataframe(alertas_atual.head(5), use_container_width=True)
-
+        fig_linha = px.line(
+            df_atual.reset_index(),
+            x="index",
+            y=df_atual.select_dtypes("number").columns[0],
+            markers=True,
+            color_discrete_sequence=["#1A6EBD"]
+        )
+    fig_linha.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#1A1A2E")
+    )
+    st.plotly_chart(fig_linha, use_container_width=True)
 
 
 

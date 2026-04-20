@@ -1,13 +1,15 @@
 import streamlit as st
 from modules import ingestao, limpeza, anomalias, relatorio
-from modules.ia import comentar_anomalias, resumo_executivo
+from modules.ia import comentar_anomalias, resumo_executivo, chat_livre
 from pathlib import Path
+from PIL import Image
 from modules.utils import carregar_css
 
 
 BASE = Path(__file__).parent.parent
 RAW = BASE / "Arquivos"
 SAIDA = BASE / "outputs/relatorio_auditoria.xlsx"
+avatar_aria = Image.open(BASE / "assets/img/perfil.jpeg")
 
 carregar_css(BASE / "assets/style.css")
 
@@ -68,8 +70,12 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.write(msg["content"])
+    if msg["role"] == "assistant":
+        with st.chat_message("assistant", avatar=avatar_aria):
+            st.write(msg["content"])
+    else:
+        with st.chat_message("user"):
+            st.write(msg["content"])
 
 col1, col2 = st.columns(2)
 
@@ -85,8 +91,8 @@ with col2:
         st.session_state.messages.append({"role":"assistant", "content": resposta})
         st.rerun()
 
-if prompt := st.chat_input("Pergunte ao auditor IA..."):
+if prompt := st.chat_input("Pergunte a ARIA"):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    resposta = comentar_anomalias(alertas_lanc)
+    resposta = chat_livre(prompt, alertas_lanc, alertas_conf, alertas_erp)
     st.session_state.messages.append({"role": "assistant", "content":resposta})
     st.rerun()

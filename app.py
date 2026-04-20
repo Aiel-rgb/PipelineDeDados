@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Pipeline de Auditoria",
+    page_title="ARGOS",
     page_icon="🔍",
     layout="wide"
 )

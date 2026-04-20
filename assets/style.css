@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
 [data-testid="stMetric"] {
     background-color: #E8F4FD;
     border-radius: 10px;
@@ -7,20 +9,17 @@
 
 [data-testid="stSidebar"] {
     background-color: #1A3A5C;
+    min-width: 180px !important;
+    max-width: 180px !important;
 }
 
 [data-testid="stSidebar"] * {
     color: #FFFFFF !important;
 }
+
 .stApp {
     background: linear-gradient(160deg, #F0F2F6 0%, #E8EDF5 40%, #DDE4F0 100%);
 }
-
-[data-testid="stSidebar"] {
-    min-width: 180px !important;
-    max-width: 180px !important;
-}
-
 
 [data-testid="stSidebarNavLink"] {
     font-size: 16px !important;
@@ -37,11 +36,36 @@
     color: #FFFFFF !important;
 }
 
-
 @keyframes slideIn {
     from { opacity: 0; transform: translateX(-15px); }
     to   { opacity: 1; transform: translateX(0); }
 }
+
 .main .block-container {
     animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ARIA Chat */
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] {
+    background: linear-gradient(135deg, #E8F4FD, #FFFFFF);
+    border-left: 3px solid #1A6EBD;
+    border-radius: 18px 18px 18px 4px;
+    padding: 15px;
+}
+
+[data-testid="stChatMessageAvatarAssistant"] {
+    background-color: #1A6EBD !important;
+    color: white !important;
+}
+
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {
+    background-color: #1A6EBD;
+    color: white;
+    border-radius: 18px 18px 4px 18px;
+    padding: 15px;
+}
+
+[data-testid="stChatInput"] {
+    border: 2px solid #1A6EBD !important;
+    border-radius: 25px !important;
 }

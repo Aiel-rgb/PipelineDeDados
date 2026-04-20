@@ -61,3 +61,25 @@ def resumo_executivo(caminho_relatorio):
         ]
     )
     return resposta.choices[0].message.content
+
+def chat_livre(pergunta: str, alertas_lanc, alertas_conf, alertas_erp):
+    contexto = f"""
+Dados disponíveis no pipeline:
+
+ALERTAS LANÇAMENTOS:
+{alertas_lanc.to_string(index=False)}
+
+ALERTAS CONFORMIDADE:
+{alertas_conf.to_string(index=False)}
+
+ALERTAS ERP:
+{alertas_erp.to_string(index=False)}
+"""
+    resposta = cliente.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": f"{contexto}\n\nPergunta: {pergunta}"}
+        ]
+    )
+    return resposta.choices[0].message.content
