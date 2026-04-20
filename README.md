@@ -1,4 +1,4 @@
-# 🔍 Pipeline de Auditoria Interna com IA
+# ARGOS
 
 Pipeline de dados para auditoria interna corporativa — automatiza a ingestão, limpeza, detecção de anomalias e geração de relatórios a partir de planilhas Excel e exportações de ERP, com dashboard interativo e análise por IA (Groq).
 
