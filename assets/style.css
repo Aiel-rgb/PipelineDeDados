@@ -69,3 +69,14 @@
     border: 2px solid #1A6EBD !important;
     border-radius: 25px !important;
 }
+
+[data-testid="stImage"] img {
+    border-radius: 50%;
+    margin-top: 8px;
+    border-color: #1A6EBD;
+}
+
+[data-testid="stChatMessageAvatarAssistant"] img {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}

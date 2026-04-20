@@ -9,7 +9,7 @@ from modules.utils import carregar_css
 BASE = Path(__file__).parent.parent
 RAW = BASE / "Arquivos"
 SAIDA = BASE / "outputs/relatorio_auditoria.xlsx"
-avatar_aria = Image.open(BASE / "assets/img/perfil.jpeg")
+avatar_aria = Image.open(BASE / "assets/img/perfil.png")
 
 carregar_css(BASE / "assets/style.css")
 
@@ -27,6 +27,21 @@ alertas_erp  = anomalias.detectar_anomalias_erp(df_erp)
 
 SAIDA.parent.mkdir(parents=True, exist_ok=True)
 relatorio.gerar_relatorio(alertas_lanc, alertas_conf, alertas_erp, SAIDA)
+
+col_img, col_titulo = st.columns([0.08,1])
+
+with col_img:
+    st.image(str(BASE / "assets/img/perfil.png"), width=80)
+
+with col_titulo:
+    st.markdown("""
+       <h1 style='font-size: 2.5rem; font-weight: 700; color: #1A6EBD; letter-spacing: 2px; margin-top: 5px;'>
+        ARIA
+        <span style='font-size: 1rem; font-weight: 400; color: #666;'>
+         — Auditoria e Risco com Inteligência Artificial
+        </span>
+    </h1> 
+    """, unsafe_allow_html=True)
 
 st.markdown("""
 <style>
@@ -50,14 +65,6 @@ st.markdown("""
     font-size: 18px;
 }
 </style>
-
-<h1 style='font-size: 2.5rem; font-weight: 700; color: #1A6EBD; letter-spacing: 2px;'>
-    🤖 ARIA
-    <span style='font-size: 1rem; font-weight: 400; color: #666; letter-spacing: 0px;'>
-     — Auditoria e Risco com Inteligência Artificial
-    </span>
-</h1>
-
 <div class="aria-welcome">
     <strong>Olá, seja bem-vindo. Sou a ARIA</strong> — Auditoria e Risco com Inteligência Artificial.<br><br>
     Estou aqui para analisar os dados do pipeline, identificar anomalias e responder suas dúvidas 
